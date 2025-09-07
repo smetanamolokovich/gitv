@@ -4,7 +4,6 @@ import { hideBin } from 'yargs/helpers'
 import { scan } from './scan'
 import { stats } from './stats'
 
-// ===== COMMAND DEFINITIONS =====
 interface AddCommandArgs {
   folder: string
 }
@@ -13,7 +12,6 @@ interface StatsCommandArgs {
   email: string
 }
 
-// ===== COMMAND HANDLERS =====
 const handleAddCommand = (argv: AddCommandArgs): void => {
   if (argv.folder) {
     scan(argv.folder)
@@ -32,7 +30,6 @@ const handleStatsCommand = async (argv: StatsCommandArgs): Promise<void> => {
   }
 }
 
-// ===== CLI CONFIGURATION =====
 const setupCLI = () => {
   return yargs(hideBin(process.argv))
     .scriptName('gitv')
@@ -73,7 +70,6 @@ const setupCLI = () => {
     .strict()
 }
 
-// ===== MAIN EXECUTION =====
 const main = async (): Promise<void> => {
   try {
     await setupCLI().parse()

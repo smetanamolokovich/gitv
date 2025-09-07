@@ -3,14 +3,12 @@ import * as path from 'path';
 import * as os from 'os';
 import ora from 'ora';
 
-// ===== CONSTANTS =====
 const CONFIG = {
   DOTFILE: '.gogitlocalstats',
   IGNORED_DIRECTORIES: ['node_modules', 'vendor', '.git'],
   GIT_DIRECTORY: '.git',
 } as const;
 
-// ===== INTERFACES =====
 interface IFileManager {
   getDotFilePath(): string;
   parseFileLinesToSlice(filePath: string): string[];
@@ -33,7 +31,6 @@ interface IScanReporter {
   showScanSummary(rootPath: string, repositoryCount: number): void;
 }
 
-// ===== IMPLEMENTATIONS =====
 class FileManager implements IFileManager {
   getDotFilePath(): string {
     return path.join(os.homedir(), CONFIG.DOTFILE);
@@ -78,7 +75,6 @@ class RepositoryManager implements IRepositoryManager {
   }
 }
 
-// ===== SCANNING ENGINE =====
 class GitScanner implements IGitScanner {
   constructor(private repositoryManager: IRepositoryManager) {}
 
@@ -148,7 +144,6 @@ class GitScanner implements IGitScanner {
   }
 }
 
-// ===== REPORTING =====
 class ScanReporter implements IScanReporter {
   constructor(private fileManager: IFileManager) {}
 
@@ -171,7 +166,6 @@ class ScanReporter implements IScanReporter {
   }
 }
 
-// ===== DEPENDENCY INJECTION CONTAINER =====
 class ScanContainer {
   private fileManager: IFileManager;
   private repositoryManager: IRepositoryManager;
@@ -199,7 +193,6 @@ class ScanContainer {
 }
 
 
-// ===== MAIN EXPORT =====
 export function scan(folder: string): void {
   const container = new ScanContainer();
   const fileManager = container.getFileManager();
@@ -229,7 +222,6 @@ export function scan(folder: string): void {
   }
 }
 
-// ===== EXPORTS FOR TESTING =====
 export {
   FileManager,
   RepositoryManager,

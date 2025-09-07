@@ -5,7 +5,6 @@ import simpleGit, { DefaultLogFields, ListLogLine } from 'simple-git';
 import chalk from 'chalk';
 import ora from 'ora';
 
-// ===== CONSTANTS =====
 const CONFIG = {
   DOTFILE: '.gogitlocalstats',
   DAYS_IN_LAST_SIX_MONTHS: 183,
@@ -30,7 +29,6 @@ const CONTRIBUTION_LEVELS = {
   HIGH: 9,
 } as const;
 
-// ===== TYPES AND INTERFACES =====
 type Column = number[];
 type CommitMap = Map<number, number>;
 type ColumnMap = Map<number, Column>;
@@ -59,7 +57,6 @@ interface IRenderer {
   renderContributionGraph(commits: CommitMap): void;
 }
 
-// ===== IMPLEMENTATIONS =====
 class DateCalculator implements IDateCalculator {
   getBeginningOfDay(date: Date): Date {
     return new Date(date.getFullYear(), date.getMonth(), date.getDate());
@@ -323,7 +320,6 @@ class Renderer implements IRenderer {
   }
 }
 
-// ===== DEPENDENCY INJECTION CONTAINER =====
 class StatsService {
   private contributionProcessor: IContributionProcessor;
   private renderer: IRenderer;
@@ -350,13 +346,11 @@ class StatsService {
   }
 }
 
-// ===== MAIN EXPORT =====
 export async function stats(email: string): Promise<void> {
   const statsService = new StatsService();
   await statsService.generateStats(email);
 }
 
-// ===== EXPORTS FOR TESTING =====
 export {
   DateCalculator,
   FileRepository,
