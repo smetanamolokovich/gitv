@@ -355,3 +355,18 @@ export async function stats(email: string): Promise<void> {
   const statsService = new StatsService();
   await statsService.generateStats(email);
 }
+
+// ===== EXPORTS FOR TESTING =====
+export {
+  DateCalculator,
+  FileRepository,
+  ContributionProcessor,
+  GridBuilder,
+  Renderer,
+  StatsService,
+  IDateCalculator,
+  IFileRepository,
+  IContributionProcessor,
+  IGridBuilder,
+  IRenderer,
+};

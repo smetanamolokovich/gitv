@@ -228,3 +228,16 @@ export function scan(folder: string): void {
     process.exit(1);
   }
 }
+
+// ===== EXPORTS FOR TESTING =====
+export {
+  FileManager,
+  RepositoryManager,
+  GitScanner,
+  ScanReporter,
+  ScanContainer,
+  IFileManager,
+  IRepositoryManager,
+  IGitScanner,
+  IScanReporter,
+};
